@@ -3,12 +3,18 @@ import shutil
 import re
 from html.parser import HTMLParser
 
+# 檢查 Cloud-Reports 資料夾是否存在於預期路徑
+cloud_reports_path = '/usr/local/bin/WFA-QuickTrack-Tool/Cloud-Reports'
+if not os.path.exists(cloud_reports_path):
+    print("QuickTrack 需要安裝在預設位置。")
+    exit()
+
 # 創建名為 Cloud_report 的資料夾
 new_folder_path = 'Cloud_report'
 os.makedirs(new_folder_path, exist_ok=True)
 
 # 源資料夾路徑
-source_folder_path = '/usr/local/bin/WFA-QuickTrack-Tool/Cloud-Reports'
+source_folder_path = cloud_reports_path
 
 # 獲取源資料夾下所有資料夾的列表
 subfolders = [f.path for f in os.scandir(source_folder_path) if f.is_dir()]
